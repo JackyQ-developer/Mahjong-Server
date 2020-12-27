@@ -9,4 +9,5 @@ module.exports = app => {
   router.post('/login', controller.user.login);
   router.get('/record/list', controller.record.getRecordList);
   router.post('/record', controller.record.addRecord);
+  router.get('/statistics/record', controller.statistics.getStatisticsRecord);
 };
