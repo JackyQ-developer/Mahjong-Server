@@ -11,16 +11,22 @@ function toInt(str) {
 class RecordController extends Controller {
   async getRecordList() {
     const { ctx } = this;
+    const { Op } = ctx.app.Sequelize;
     const user_id = ctx.get('token');
+    const datetime = ctx.query.datetime;
     const query = {
       where: {
-        user_id: toInt(user_id)
+        user_id: toInt(user_id),
+        created_at: {
+          [Op.gt]: new Date(datetime),
+          [Op.lt]: new Date()
+        }
       },
       limit: toInt(ctx.query.limit),
       offset: (ctx.query.page - 1) * ctx.query.limit
     };
     const items = await ctx.service.record.getRecordList(query);
-    const total = await ctx.model.Record.count();
+    const total = await ctx.model.Record.count(query);
     ctx.body = {
       code: 20000,
       message: 'success',

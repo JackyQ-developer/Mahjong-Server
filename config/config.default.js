@@ -16,7 +16,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1608704637124_4503';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'auth' ];
 
   // cros
   config.security = {
@@ -33,7 +33,8 @@ module.exports = appInfo => {
   // mysql
   config.sequelize = {
     dialect: 'mysql',
-    host: '192.168.31.80',
+    // host: '192.168.31.80',
+    host: '172.16.3.106',
     port: 3306,
     database: 'mahjong',
     username: 'jackyq',
@@ -43,6 +44,9 @@ module.exports = appInfo => {
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+    auth: {
+      whiteList: [ '/login' ]
+    }
   };
 
   return {
