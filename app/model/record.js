@@ -7,7 +7,8 @@ module.exports = app => {
     id: { type: INTEGER, primaryKey: true, autoIncrement: true },
     money: INTEGER(255),
     type: INTEGER(255),
-    user_id: INTEGER(255)
+    user_id: INTEGER(255),
+    round_id: INTEGER(255),
   });
 
   return Record;

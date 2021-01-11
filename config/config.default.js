@@ -32,13 +32,18 @@ module.exports = appInfo => {
 
   // mysql
   config.sequelize = {
-    dialect: 'mysql',
+    dialect: 'mariadb',
     // host: '192.168.31.80',
     host: '172.16.3.106',
     port: 3306,
     database: 'mahjong',
     username: 'jackyq',
-    password: 'xiaowo12'
+    password: 'xiaowo12',
+    query: {
+      raw: true,
+      underscored: true //列名驼峰转下划线
+    },
+    timezone: '+08:00'
   }
 
   // add your user config here

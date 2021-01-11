@@ -16,14 +16,15 @@ class StatisticsController extends Controller {
   async getStatisticsRecord() {
     const { ctx } = this;
     const user_id = toInt(ctx.get('token'));
-    const datetime = ctx.query.datetime;
+    const startTime = ctx.query.startTime;
+    const endTime = ctx.query.endTime;
     const { Op } = ctx.app.Sequelize;
     const query = {
       where: {
         user_id: user_id,
         created_at: {
-          [Op.gt]: new Date(datetime),
-          [Op.lt]: new Date()
+          [Op.gt]: startTime,
+          [Op.lt]: endTime
         }
       }
     };
