@@ -10,6 +10,7 @@ class StatisticsService extends Service {
       sum += item.money;
     });
     return {
+      total: results.length,
       sum,
       collect,
       pay
